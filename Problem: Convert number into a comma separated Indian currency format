@@ -1,0 +1,17 @@
+def easy_indian_format(num):
+    s = f"{num:.4f}".rstrip('0').rstrip('.')
+    if '.' in s:
+        int_part, dec = s.split('.')
+        dec = '.' + dec
+    else:
+        int_part, dec = s, ''
+    if len(int_part) <= 3:
+        return int_part + dec
+    last = int_part[-3:]
+    rest = int_part[:-3]
+    out = ''
+    while len(rest) > 2:
+        out = ',' + rest[-2:] + out
+        rest = rest[:-2]
+    out = rest + out if rest else outreturn out + ',' + last + dec
+print(easy_indian_format(123456.7891))  # 1,23,456.7891
