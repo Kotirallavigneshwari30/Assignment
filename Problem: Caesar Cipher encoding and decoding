@@ -1,0 +1,14 @@
+def encode_caesar(msg: str, shift: int) -> str:
+    result = []
+    for c in msg:
+        if c.isalpha():
+            base = ord('A') if c.isupper() else ord('a')
+            shifted = (ord(c) - base + shift) % 26
+            result.append(chr(base + shifted))
+        else:
+            result.append(c)  # leave punctuation/spaces as is
+    return ''.join(result)
+def decode_caesar(msg: str, shift: int) -> str:
+    return encode_caesar(msg, -shift)
+print(encode_caesar("HELLO", 3))   # KHOOR
+print(decode_caesar("KHOOR", 3))   # HELLO
